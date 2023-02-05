@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 
 const app  = express();
+const port = process.env.PORT || 3000;
 
 app.use(
     express.urlencoded({
@@ -13,7 +14,7 @@ app.use(
 app.use(cors());
 app.use(express.json());
 
-app.listen(process.env.PORT);
+app.listen(port, (err) => console.log(err ? `Error: ${err}` : `Started on port ${port}`));
 
 const EventsRouter = require('./src/routes/Event');
 

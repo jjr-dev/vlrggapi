@@ -1,8 +1,27 @@
+const { deepStrictEqual } = require('assert');
+const e = require('express');
+const fs  = require('fs');
 const pup = require('puppeteer');
+
 const url = 'https://www.vlr.gg/events';
 
 class Events {
     async List(data) {
+        let events;
+
+        let file = `./src/cache/events.json`;
+        if(fs.existsSync(file)) {
+            events = fs.readFileSync(file, 'utf8');
+            return JSON.parse(events);
+        }
+
+        events = await this.ListByOrigin(data);
+        fs.writeFileSync(file, JSON.stringify(events));
+
+        return events;
+    }
+
+    async ListByOrigin(data) {
         const browser = await pup.launch();
         const page = await browser.newPage();
 
@@ -38,7 +57,7 @@ class Events {
         }
 
         await browser.close();
-
+        
         return events;
     }
 }
