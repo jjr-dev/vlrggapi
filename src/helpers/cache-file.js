@@ -1,7 +1,7 @@
 const fs  = require('fs');
 
 class CacheFile {
-    verifyFile(file, minutes) {
+    verify(file, minutes) {
         if(fs.existsSync(file)) {
             let stats = fs.statSync(file);
 
@@ -16,11 +16,11 @@ class CacheFile {
         return false;
     }
 
-    readFile(file) {
+    read(file) {
         return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : false;
     }
 
-    saveFile(file, data) {
+    save(file, data) {
         fs.writeFile(file, JSON.stringify(data), err => {
             console.log(`Error: ${err}`);
         });

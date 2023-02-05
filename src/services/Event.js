@@ -9,11 +9,11 @@ class Events {
         
         let file = `./src/cache/events.json`;
 
-        if(cf.verifyFile(file, 60))
-            return cf.readFile(file);
+        if(cf.verify(file, 60))
+            return cf.read(file);
 
         events = await this.ListByOrigin(data);
-        cf.saveFile(file, events);
+        cf.save(file, events);
 
         return events;
     }
