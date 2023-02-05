@@ -1,22 +1,19 @@
-const { deepStrictEqual } = require('assert');
-const e = require('express');
-const fs  = require('fs');
 const pup = require('puppeteer');
 
 const url = 'https://www.vlr.gg/events';
+const cf  = require('../helpers/cache-file.js');
 
 class Events {
     async List(data) {
         let events;
-
+        
         let file = `./src/cache/events.json`;
-        if(fs.existsSync(file)) {
-            events = fs.readFileSync(file, 'utf8');
-            return JSON.parse(events);
-        }
+
+        if(cf.verifyFile(file, 60))
+            return cf.readFile(file);
 
         events = await this.ListByOrigin(data);
-        fs.writeFileSync(file, JSON.stringify(events));
+        cf.saveFile(file, events);
 
         return events;
     }
