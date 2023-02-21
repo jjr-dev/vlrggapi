@@ -1,8 +1,24 @@
 const pup = require('puppeteer');
+
 const url = 'https://www.vlr.gg/events';
+const cf  = require('../helpers/cache-file.js');
 
 class Events {
     async List(data) {
+        let events;
+        
+        let file = `./src/cache/events.json`;
+
+        if(cf.verify(file, 60))
+            return cf.read(file);
+
+        events = await this.ListByOrigin(data);
+        cf.save(file, events);
+
+        return events;
+    }
+
+    async ListByOrigin(data) {
         const browser = await pup.launch();
         const page = await browser.newPage();
 
@@ -38,7 +54,7 @@ class Events {
         }
 
         await browser.close();
-
+        
         return events;
     }
 }
