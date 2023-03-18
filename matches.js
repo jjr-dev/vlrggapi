@@ -42,12 +42,16 @@ function formatMatchResponse(matches, event_name) {
         
         for (let match of match_elements) {
             removeAllChildElements(match.querySelector('.match-item-event'));
-        
+            
             const link = match.href;
             const id = getIdInURL(link);
-            const teams = [
-                match.querySelectorAll('.match-item-vs .text-of')[0].innerText.trim(),
-                match.querySelectorAll('.match-item-vs .text-of')[1].innerText.trim()
+            const teams = [{
+                name: match.querySelectorAll('.match-item-vs .text-of')[0].innerText.trim(),
+                winner: match.querySelectorAll('.match-item-vs-team')[0].classList.contains('mod-winner')
+            },{
+                name: match.querySelectorAll('.match-item-vs .text-of')[1].innerText.trim(),
+                winner: match.querySelectorAll('.match-item-vs-team')[1].classList.contains('mod-winner')
+            }
             ];
             const result = [
                 match.querySelectorAll('.match-item-vs-team-score')[0].innerText.trim(),
