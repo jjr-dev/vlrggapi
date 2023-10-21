@@ -62,11 +62,12 @@ const moment = require("moment");
 
 				if (status == EVENT_STATUS['completed']) {
 					const team_scores = match.querySelectorAll('.m-item-result span');
-					const result = [
+					
+					result = [
 						team_scores[0].textContent.trim(),
 						team_scores[1].textContent.trim()
 					];
-					const winner = getWinner(result);
+					winner = getWinner(result);
 				}
 
 				const team_names = match.querySelectorAll('.m-item-team-name');
