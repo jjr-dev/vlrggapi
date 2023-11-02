@@ -1,20 +1,21 @@
 {
-  "name": "vlr.gg",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon ./app.js localhost 3000"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "moment": "^2.29.4",
-    "nodemon": "^2.0.20",
-    "puppeteer": "^19.6.3"
-  }
+    "name": "vlr.gg",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon ./app.js localhost 3000",
+        "test": "nodemon ./match.js localhost 3000"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "moment": "^2.29.4",
+        "nodemon": "^2.0.20",
+        "puppeteer": "^19.6.3"
+    }
 }
